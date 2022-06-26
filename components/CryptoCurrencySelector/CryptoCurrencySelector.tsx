@@ -1,20 +1,19 @@
 import React, { useState } from 'react'
+import Image from 'next/image'
 import { Modal } from '../'
-import { FaTimes, FaSearch } from 'react-icons/fa'
-import { currencies } from '../../lib/data/currencies'
-import { useCurrency } from '../../lib/contexts/currency/currencyContext'
+import { FaTimes, FaSearch, FaChevronDown } from 'react-icons/fa'
 import { Input } from '../../lib/ui_library'
-import type { Currency } from '../../lib/types'
+import { useCurrency } from '../../lib/contexts/currency/currencyContext'
 
-interface CurrencySelectorProps {}
+interface CryptoCurrencySelectorProps {}
 
-const CurrencySelector: React.FC<CurrencySelectorProps> = (props) => {
+const CryptoCurrencySelector: React.FC<CryptoCurrencySelectorProps> = (
+  props
+) => {
   const { state, dispatch } = useCurrency()
 
   const [showModal, setShowModal] = useState(false)
-  const [filteredCurrencies, setFilteredCurrencies] = useState<Currency[]>(
-    currencies.slice(0, 5) as Currency[]
-  )
+  const [filteredCurrencies, setFilteredCurrencies] = useState<any[]>([])
 
   function handleModalClose() {
     setShowModal(false)
@@ -22,36 +21,53 @@ const CurrencySelector: React.FC<CurrencySelectorProps> = (props) => {
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value } = event.target
-    let filtered = []
+    // let filtered = []
 
-    if (value) {
-      filtered = currencies.filter(
-        (currency) =>
-          currency.code.toLowerCase().includes(value.toLowerCase()) ||
-          currency.currency.toLowerCase().includes(value.toLowerCase())
-      )
-    } else {
-      filtered = currencies.slice(0, 5)
-    }
+    // if (value) {
+    //   filtered = currencies.filter(
+    //     (currency) =>
+    //       currency.code.toLowerCase().includes(value.toLowerCase()) ||
+    //       currency.currency.toLowerCase().includes(value.toLowerCase())
+    //   )
+    // } else {
+    //   filtered = currencies.slice(0, 5)
+    // }
 
-    setFilteredCurrencies(filtered)
+    // setFilteredCurrencies(filtered)
   }
 
-  function handleCurrencyClick(currency: Currency) {
-    dispatch({ type: 'set_currency', payload: currency })
-    setShowModal(false)
-    setFilteredCurrencies(currencies.slice(0, 5))
+  function handleCurrencyClick(currency: any) {
+    // dispatch({ type: 'set_currency', payload: currency })
+    // setShowModal(false)
+    // setFilteredCurrencies(currencies.slice(0, 5))
   }
 
   return (
     <div>
-      <button
-        title="Select a currency"
-        className="flex items-center rounded bg-green-600 py-2 px-2 font-medium text-white transition duration-300 hover:bg-green-700"
-        onClick={() => setShowModal(true)}
-      >
-        {state.currency.code}
-      </button>
+      <div>
+        <p className="mb-2 text-sm text-slate-400">Choose cryptocurrency</p>
+        <button
+          title="Select a currency"
+          className="flex items-center rounded bg-slate-600 py-2 px-4 font-medium text-white transition duration-300 hover:bg-slate-800"
+          onClick={() => setShowModal(true)}
+        >
+          <div className="mr-2 h-5 w-5">
+            <img
+              className="w-full"
+              loading="lazy"
+              src="https://assets.coingecko.com/coins/images/1/small/bitcoin.png?1547033579"
+            />
+          </div>
+          <p>BTC</p>
+          <span className="ml-6 mr-0">
+            <FaChevronDown className="h-3 w-3" />
+          </span>
+        </button>
+
+        <p className="mt-2 text-xs text-slate-400">
+          {state.currency.symbol || ''} 4423751.1239
+        </p>
+      </div>
 
       <Modal open={showModal} onClose={() => setShowModal(!showModal)}>
         <div className="relative my-6 mx-auto w-full max-w-2xl p-6">
@@ -85,7 +101,7 @@ const CurrencySelector: React.FC<CurrencySelectorProps> = (props) => {
                   filteredCurrencies.map((currency) => (
                     <div
                       className={`flex cursor-pointer items-center justify-between border-b ${
-                        currency.code === state.currency.code
+                        currency.code === 'state.currency.code'
                           ? 'bg-slate-200 dark:bg-slate-700'
                           : ''
                       } border-slate-200 px-6 py-4 hover:bg-slate-200 dark:border-slate-700 dark:hover:bg-slate-700`}
@@ -123,4 +139,4 @@ const CurrencySelector: React.FC<CurrencySelectorProps> = (props) => {
   )
 }
 
-export default CurrencySelector
+export default CryptoCurrencySelector

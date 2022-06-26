@@ -31,7 +31,7 @@ const MainNav: React.FC<MainNavProps> = (props) => {
   function toggleMobileMenu() {
     setShowMobileMenu(!showMobileMenu)
   }
-  console.log({ router })
+
   return (
     <nav className="bg-gray-100 shadow-md dark:bg-[#182b3c]">
       <div className="mx-auto max-w-6xl px-4">
@@ -61,7 +61,10 @@ const MainNav: React.FC<MainNavProps> = (props) => {
                     </a>
                   </Link>
                 ) : (
-                  <a className="py-4 px-2 font-semibold text-gray-300 dark:text-gray-700 ">
+                  <a
+                    key={link.name}
+                    className="py-4 px-2 font-semibold text-gray-300 dark:text-gray-700 "
+                  >
                     {link.name}
                   </a>
                 )
