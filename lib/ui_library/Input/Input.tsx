@@ -6,6 +6,9 @@ interface InputProps {
   inputClassName?: string
   placeholder?: string
   type?: string
+  min?: number
+  name?: string
+  value?: string | number
   iconLeft?: React.ReactNode
   iconRight?: React.ReactNode
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
@@ -20,6 +23,8 @@ const Input: React.FC<InputProps> = (props) => {
     iconRight,
     labelClassName,
     inputClassName,
+    name,
+    value,
   } = props
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -48,8 +53,11 @@ const Input: React.FC<InputProps> = (props) => {
           </span>
         )}
         <input
+          value={value}
           placeholder={placeholder}
           type={type}
+          min={props.min}
+          name={name}
           onChange={handleInputChange}
           className={`${inputClassName} w-full appearance-none rounded border bg-slate-100 py-2 ${
             iconLeft ? 'px-10' : 'px-2'

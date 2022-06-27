@@ -1,18 +1,42 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useState } from 'react'
 import { MainNav, CryptoCurrencySelector } from '../components'
 import { Input } from '../lib/ui_library'
 import { useCurrency } from '../lib/contexts/currency/currencyContext'
+import { investmentCalculator } from '../lib/helpers'
 
 const Home: NextPage = () => {
   const { state, dispatch } = useCurrency()
+  const [inputValues, setInputValues] = useState({
+    investment: '',
+    initialPrice: '',
+    sellingPrice: '',
+  })
+
+  const { total_coins, profit, roi_percentage, total } = investmentCalculator(
+    Number(inputValues.initialPrice),
+    Number(inputValues.investment),
+    Number(inputValues.sellingPrice)
+  )
 
   const currencySymbol = (
     <div className="rounded-l border border-r-0 bg-slate-600 px-4 py-2 text-white dark:border-slate-600 dark:bg-slate-700">
       {state.currency.symbol || ''}
     </div>
   )
+
+  const isNegative = (value: number | string) => value < 0
+
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const { name, value } = event.target
+
+    if (!isNegative(value)) {
+      setInputValues({ ...inputValues, [name]: value })
+    }
+  }
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-200 transition-all duration-200 dark:bg-[#122334]">
       <Head>
@@ -29,40 +53,92 @@ const Home: NextPage = () => {
               <CryptoCurrencySelector />
 
               <div className="mt-10">
-                <div className="mt-6 flex">
-                  {currencySymbol}
-                  <Input
-                    placeholder="Investment"
-                    type="number"
-                    inputClassName="border-l-0"
-                  />
+                <div className="mt-6">
+                  <p className="pb-2 text-sm text-black dark:text-white">
+                    Initial Asset Price
+                  </p>
+                  <div className="flex">
+                    {currencySymbol}
+                    <Input
+                      value={inputValues.initialPrice}
+                      min={0}
+                      type="number"
+                      name="initialPrice"
+                      inputClassName="border-l-0"
+                      onChange={handleInputChange}
+                    />
+                  </div>
                 </div>
 
-                <div className="mt-6 flex">
-                  {currencySymbol}
-                  <Input
-                    placeholder="Initial Price"
-                    type="number"
-                    inputClassName="border-l-0"
-                  />
+                <div className="mt-6">
+                  <p className="pb-2 text-sm text-black dark:text-white">
+                    Investment
+                  </p>
+                  <div className="flex">
+                    {currencySymbol}
+                    <Input
+                      value={inputValues.investment}
+                      min={0}
+                      type="number"
+                      name="investment"
+                      inputClassName="border-l-0"
+                      onChange={handleInputChange}
+                    />
+                  </div>
                 </div>
 
-                <div className="mt-6 flex">
-                  {currencySymbol}
-                  <Input
-                    placeholder="Selling Price"
-                    type="number"
-                    inputClassName="border-l-0"
-                  />
+                <div className="mt-6">
+                  <p className="pb-2 text-sm text-black dark:text-white">
+                    Selling Price
+                  </p>
+                  <div className="flex">
+                    {currencySymbol}
+                    <Input
+                      value={inputValues.sellingPrice}
+                      min={0}
+                      type="number"
+                      name="sellingPrice"
+                      inputClassName="border-l-0"
+                      onChange={handleInputChange}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 mb-6 w-96 rounded border border-slate-700 p-6 text-left ">
-              <h3 className="text-2xl font-bold">Profit</h3>
-              <p className="mt-4 text-xl">
-                Learn about Next.js in an interactive course with quizzes!
-              </p>
+            <div className="mt-6 mb-6 w-96 rounded border border-slate-400 p-6 text-left dark:border-slate-700 ">
+              <div className="flex flex-col">
+                <div className="mb-5 flex">
+                  <p className="font-semibold">Coins</p>
+                  <p className="ml-auto font-light">{total_coins}</p>
+                </div>
+                <div className="mb-5 flex">
+                  <p className="font-semibold">Total</p>
+                  <p className="ml-auto font-light">
+                    {state.currency.symbol || ''} {total}
+                  </p>
+                </div>
+                <div className="mb-5 flex">
+                  <p className="font-semibold">ROI</p>
+                  <p
+                    className={`ml-auto text-2xl font-bold ${
+                      isNegative(profit) ? 'text-red-500' : 'text-green-600'
+                    } `}
+                  >
+                    {roi_percentage} %
+                  </p>
+                </div>
+              </div>
+              <div className="mt-12">
+                <h3 className="text-xl font-bold">Profit</h3>
+                <p
+                  className={`mt-2 text-4xl font-bold ${
+                    isNegative(profit) ? 'text-red-500' : 'text-green-600'
+                  }`}
+                >
+                  {state.currency.symbol || ''} {profit}
+                </p>
+              </div>
             </div>
           </div>
         </div>
