@@ -21,7 +21,7 @@ export interface CryptoCurrency {
   ath_change_percentage: number
   ath_date: string
   atl: number
-  atl_change_percentage: 6.25422
+  atl_change_percentage: number
   atl_date: string
   roi: null | number
   last_updated: string

@@ -39,7 +39,14 @@ const MainNav: React.FC<MainNavProps> = (props) => {
           <div className="flex flex-1 space-x-7">
             <div>
               <a href="/" className="flex items-center py-4 px-2">
-                <h3 className="mr-2 text-2xl font-bold">&#8383;</h3>
+                {/* <h3 className="mr-2 text-2xl font-bold">&#8383;</h3> */}
+                <div className="mr-3 w-7">
+                  <img
+                    className="w-full"
+                    src="/icons/icon-72x72.png"
+                    alt="Crypto Roi Calculator Logo"
+                  />
+                </div>
                 <span className="md:text-md text-xs font-semibold sm:text-lg">
                   Crypto Roi Calculator
                 </span>
@@ -99,8 +106,8 @@ const MainNav: React.FC<MainNavProps> = (props) => {
         </div>
       </div>
 
-      <div className={`mobile-menu ${!showMobileMenu && 'hidden'} p-5`}>
-        <ul className="">
+      <div className={`mobile-menu ${!showMobileMenu && 'hidden'} py-5`}>
+        <ul>
           {links.map((link) => (
             <li
               key={link.name}
@@ -119,7 +126,7 @@ const MainNav: React.FC<MainNavProps> = (props) => {
                   </a>
                 </Link>
               ) : (
-                <a className="disabled block bg-gray-200 px-2 py-4 text-sm font-semibold text-gray-400">
+                <a className="disabled block bg-gray-200 px-2 py-4 text-sm font-semibold text-gray-400 dark:bg-slate-700">
                   {link.name}
                 </a>
               )}

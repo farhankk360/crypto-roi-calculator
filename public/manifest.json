@@ -1,6 +1,6 @@
 {
   "name": "Crypto ROI Calculator",
-  "short_name": "ROI Calculator",
+  "short_name": "Crypto ROI Calculator",
   "theme_color": "#475569",
   "background_color": "#e5e7eb",
   "display": "fullscreen",
@@ -48,6 +48,5 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "splash_pages": null
+  ]
 }

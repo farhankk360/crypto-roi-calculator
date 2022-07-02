@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { Modal } from '..'
 import { FaTimes, FaSearch } from 'react-icons/fa'
 import { currencies } from '../../lib/data/currencies'
 import { useFiatCurrency } from '../../lib/contexts/fiatCurrency/fiatCurrencyContext'
-import { Input } from '../../lib/ui_library'
+import { Input, Modal } from '../../lib/ui_library'
 import type { FiatCurrency } from '../../lib/types'
 
 interface FiatCurrencySelectorProps {}
@@ -69,7 +68,7 @@ const FiatCurrencySelector: React.FC<FiatCurrencySelectorProps> = (props) => {
                 </span>
               </button>
             </div>
-            <div className="relative flex-auto px-10">
+            <div className="relative flex-auto sm:px-10">
               <Input
                 onChange={handleInputChange}
                 label="Search Fiat Currency"
