@@ -72,11 +72,10 @@ const FiatCurrencySelector: React.FC<FiatCurrencySelectorProps> = (props) => {
             <div className="relative flex-auto px-10">
               <Input
                 onChange={handleInputChange}
-                label="Search Currency"
+                label="Search Fiat Currency"
                 labelClassName="pb-5"
                 type="text"
                 iconRight={<FaSearch className="h-5 w-5" />}
-                iconLeft={<FaSearch className="h-5 w-5" />}
               />
               <div
                 className={`mt-10 mb-16 h-80 overflow-x-auto ${
@@ -114,7 +113,7 @@ const FiatCurrencySelector: React.FC<FiatCurrencySelectorProps> = (props) => {
                   ))) || (
                   <div className="flex h-full items-center justify-center">
                     <p className="text-sm font-light text-black dark:text-white">
-                      No currencies found
+                      Not found
                     </p>
                   </div>
                 )}

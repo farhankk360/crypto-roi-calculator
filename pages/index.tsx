@@ -1,33 +1,49 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { MainNav, CryptoCurrencySelector } from '../components'
 import { Input } from '../lib/ui_library'
 import { useFiatCurrency } from '../lib/contexts/fiatCurrency/fiatCurrencyContext'
+import { useCryptoCurrency } from '../lib/contexts/cryptoCurrency/cryptoCurrencyContext'
 import { investmentCalculator } from '../lib/helpers'
 
-const Home: NextPage = () => {
+const Home: NextPage<any> = (props) => {
   const {
     fiatCurrencyState: { selectedFiatCurrency, fiatCurrencyExchangeRates },
-    dispatch,
+    dispatch: fiatDispatch,
   } = useFiatCurrency()
+
+  const { cryptoCurrencyState, dispatch: cryptoDispatch } = useCryptoCurrency()
   const [inputValues, setInputValues] = useState({
     investment: '',
     initialPrice: '',
     sellingPrice: '',
   })
 
+  useEffect(() => {
+    if (props?.exchangeRateRes) {
+      fiatDispatch({
+        type: 'set_fiat_currency_exchange_rates',
+        payload: {
+          base: props.exchangeRateRes,
+          date: props.date,
+          rates: props.rates,
+        },
+      })
+    }
+    if (props?.cyptoDataRes?.length) {
+      cryptoDispatch({
+        type: 'set_crypto_currencies',
+        payload: props.cyptoDataRes,
+      })
+    }
+  }, [])
+
   const { total_coins, profit, roi_percentage, total } = investmentCalculator(
     Number(inputValues.initialPrice),
     Number(inputValues.investment),
     Number(inputValues.sellingPrice)
-  )
-
-  const currencySymbol = (
-    <div className="rounded-l border border-r-0 bg-slate-600 px-4 py-2 text-white dark:border-slate-600 dark:bg-slate-700">
-      {selectedFiatCurrency?.symbol || ''}
-    </div>
   )
 
   const isNegative = (value: number | string) => value < 0
@@ -39,6 +55,12 @@ const Home: NextPage = () => {
       setInputValues({ ...inputValues, [name]: value })
     }
   }
+
+  const currencySymbol = (
+    <div className="rounded-l border border-r-0 bg-slate-600 px-4 py-2 text-white dark:border-slate-600 dark:bg-slate-700">
+      {selectedFiatCurrency?.symbol || ''}
+    </div>
+  )
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-200 transition-all duration-200 dark:bg-[#122334]">
@@ -161,6 +183,20 @@ const Home: NextPage = () => {
       </footer>
     </div>
   )
+}
+
+export async function getServerSideProps() {
+  const exchangeRateRes = await fetch(
+    `${process.env.NEXT_EXCHANGE_RATE_API}/latest?base=USD`
+  ).then((res) => res.json())
+
+  const cyptoDataRes = await fetch(
+    `${process.env.NEXT_COINGECKO_API}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false&price_change_percentage=24h`
+  ).then((res) => res.json())
+
+  await Promise.all([exchangeRateRes, cyptoDataRes])
+
+  return { props: { exchangeRateRes, cyptoDataRes } }
 }
 
 export default Home

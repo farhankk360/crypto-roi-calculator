@@ -45,11 +45,8 @@ const Input: React.FC<InputProps> = (props) => {
 
       <div className="relative">
         {iconLeft && (
-          <span
-            className="absolute inset-y-0"
-            // style={{ position: 'absolute', left: 0 }}
-          >
-            <div className="flex items-center px-4 py-2">{iconLeft}</div>
+          <span className="absolute inset-y-0">
+            <div className="flex items-center px-3 py-3">{iconLeft}</div>
           </span>
         )}
         <input
@@ -64,16 +61,8 @@ const Input: React.FC<InputProps> = (props) => {
           } text-black dark:border-slate-600 dark:bg-slate-700 dark:text-white`}
         />
         {iconRight && (
-          <span
-            className="absolute inset-y-0 right-0 pr-5"
-            style={{
-              position: 'absolute',
-              right: 0,
-              top: 10,
-              paddingRight: '1.2rem',
-            }}
-          >
-            <div className="flex items-center">{iconRight}</div>
+          <span className="absolute inset-y-0 right-0">
+            <div className="flex items-center px-4 py-3">{iconRight}</div>
           </span>
         )}
       </div>

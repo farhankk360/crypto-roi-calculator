@@ -31,8 +31,12 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# vercel
-.vercel
+/public/sw.js
+/public/workbox-*.js
+/public/worker-*.js
+/public/sw.js.map
+/public/workbox-*.js.map
+/public/worker-*.js.map
 
 # typescript
 *.tsbuildinfo

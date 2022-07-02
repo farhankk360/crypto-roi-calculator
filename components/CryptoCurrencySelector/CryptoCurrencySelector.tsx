@@ -92,7 +92,7 @@ const CryptoCurrencySelector: React.FC<CryptoCurrencySelectorProps> = (
             <div className="relative flex-auto px-10">
               <Input
                 onChange={handleInputChange}
-                label="Search Currency"
+                label="Search Crypto Currency"
                 labelClassName="pb-5"
                 type="text"
                 iconRight={<FaSearch className="h-5 w-5" />}
