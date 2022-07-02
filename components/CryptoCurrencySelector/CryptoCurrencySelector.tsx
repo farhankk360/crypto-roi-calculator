@@ -3,14 +3,21 @@ import Image from 'next/image'
 import { Modal } from '../'
 import { FaTimes, FaSearch, FaChevronDown } from 'react-icons/fa'
 import { Input } from '../../lib/ui_library'
-import { useCurrency } from '../../lib/contexts/currency/currencyContext'
+import { useCryptoCurrency } from '../../lib/contexts/cryptoCurrency/cryptoCurrencyContext'
+import { useFiatCurrency } from '../../lib/contexts/fiatCurrency/fiatCurrencyContext'
 
 interface CryptoCurrencySelectorProps {}
 
 const CryptoCurrencySelector: React.FC<CryptoCurrencySelectorProps> = (
   props
 ) => {
-  const { state, dispatch } = useCurrency()
+  const {
+    fiatCurrencyState: { selectedFiatCurrency, fiatCurrencyExchangeRates },
+  } = useFiatCurrency()
+  const {
+    cryptoCurrencyState: { selectedCrypto, cryptoCurrencies },
+    dispatch,
+  } = useCryptoCurrency()
 
   const [showModal, setShowModal] = useState(false)
   const [filteredCurrencies, setFilteredCurrencies] = useState<any[]>([])
@@ -65,7 +72,7 @@ const CryptoCurrencySelector: React.FC<CryptoCurrencySelectorProps> = (
         </button>
 
         <p className="mt-2 text-xs text-slate-400">
-          {state.currency.symbol || ''} 4423751.1239
+          {selectedFiatCurrency?.symbol || ''} 4423751.1239
         </p>
       </div>
 

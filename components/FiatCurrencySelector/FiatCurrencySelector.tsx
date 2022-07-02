@@ -1,19 +1,22 @@
 import React, { useState } from 'react'
-import { Modal } from '../'
+import { Modal } from '..'
 import { FaTimes, FaSearch } from 'react-icons/fa'
 import { currencies } from '../../lib/data/currencies'
-import { useCurrency } from '../../lib/contexts/currency/currencyContext'
+import { useFiatCurrency } from '../../lib/contexts/fiatCurrency/fiatCurrencyContext'
 import { Input } from '../../lib/ui_library'
-import type { Currency } from '../../lib/types'
+import type { FiatCurrency } from '../../lib/types'
 
-interface CurrencySelectorProps {}
+interface FiatCurrencySelectorProps {}
 
-const CurrencySelector: React.FC<CurrencySelectorProps> = (props) => {
-  const { state, dispatch } = useCurrency()
+const FiatCurrencySelector: React.FC<FiatCurrencySelectorProps> = (props) => {
+  const {
+    fiatCurrencyState: { selectedFiatCurrency, fiatCurrencyExchangeRates },
+    dispatch,
+  } = useFiatCurrency()
 
   const [showModal, setShowModal] = useState(false)
-  const [filteredCurrencies, setFilteredCurrencies] = useState<Currency[]>(
-    currencies.slice(0, 5) as Currency[]
+  const [filteredCurrencies, setFilteredCurrencies] = useState<FiatCurrency[]>(
+    currencies.slice(0, 5) as FiatCurrency[]
   )
 
   function handleModalClose() {
@@ -37,8 +40,8 @@ const CurrencySelector: React.FC<CurrencySelectorProps> = (props) => {
     setFilteredCurrencies(filtered)
   }
 
-  function handleCurrencyClick(currency: Currency) {
-    dispatch({ type: 'set_currency', payload: currency })
+  function handleCurrencyClick(currency: FiatCurrency) {
+    dispatch({ type: 'set_fiat_currency', payload: currency })
     setShowModal(false)
     setFilteredCurrencies(currencies.slice(0, 5))
   }
@@ -50,7 +53,7 @@ const CurrencySelector: React.FC<CurrencySelectorProps> = (props) => {
         className="flex items-center rounded bg-green-600 py-2 px-2 font-medium text-white transition duration-300 hover:bg-green-700"
         onClick={() => setShowModal(true)}
       >
-        {state.currency.code}
+        {selectedFiatCurrency?.code}
       </button>
 
       <Modal open={showModal} onClose={() => setShowModal(!showModal)}>
@@ -73,6 +76,7 @@ const CurrencySelector: React.FC<CurrencySelectorProps> = (props) => {
                 labelClassName="pb-5"
                 type="text"
                 iconRight={<FaSearch className="h-5 w-5" />}
+                iconLeft={<FaSearch className="h-5 w-5" />}
               />
               <div
                 className={`mt-10 mb-16 h-80 overflow-x-auto ${
@@ -85,7 +89,7 @@ const CurrencySelector: React.FC<CurrencySelectorProps> = (props) => {
                   filteredCurrencies.map((currency) => (
                     <div
                       className={`flex cursor-pointer items-center justify-between border-b ${
-                        currency.code === state.currency.code
+                        currency.code === selectedFiatCurrency?.code
                           ? 'bg-slate-200 dark:bg-slate-700'
                           : ''
                       } border-slate-200 px-6 py-4 hover:bg-slate-200 dark:border-slate-700 dark:hover:bg-slate-700`}
@@ -123,4 +127,4 @@ const CurrencySelector: React.FC<CurrencySelectorProps> = (props) => {
   )
 }
 
-export default CurrencySelector
+export default FiatCurrencySelector

@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "TAILWIND_MODE=watch next dev",
     "build": "next build",
     "start": "next start"
   },
@@ -10,7 +10,8 @@
     "next-themes": "^0.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-icons": "^4.3.1"
+    "react-icons": "^4.3.1",
+    "next-pwa": "^5.5.4"
   },
   "devDependencies": {
     "@types/node": "17.0.4",

@@ -22,7 +22,7 @@ const Input: React.FC<InputProps> = (props) => {
     iconLeft,
     iconRight,
     labelClassName,
-    inputClassName,
+    inputClassName = '',
     name,
     value,
   } = props
@@ -46,10 +46,10 @@ const Input: React.FC<InputProps> = (props) => {
       <div className="relative">
         {iconLeft && (
           <span
-            className="absolute inset-y-0 flex items-center"
-            style={{ paddingLeft: 14 }}
+            className="absolute inset-y-0"
+            // style={{ position: 'absolute', left: 0 }}
           >
-            {iconLeft}
+            <div className="flex items-center px-4 py-2">{iconLeft}</div>
           </span>
         )}
         <input
@@ -64,8 +64,16 @@ const Input: React.FC<InputProps> = (props) => {
           } text-black dark:border-slate-600 dark:bg-slate-700 dark:text-white`}
         />
         {iconRight && (
-          <span className="absolute inset-y-0 right-0 flex items-center pr-5">
-            {iconRight}
+          <span
+            className="absolute inset-y-0 right-0 pr-5"
+            style={{
+              position: 'absolute',
+              right: 0,
+              top: 10,
+              paddingRight: '1.2rem',
+            }}
+          >
+            <div className="flex items-center">{iconRight}</div>
           </span>
         )}
       </div>

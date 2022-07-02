@@ -4,11 +4,14 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { MainNav, CryptoCurrencySelector } from '../components'
 import { Input } from '../lib/ui_library'
-import { useCurrency } from '../lib/contexts/currency/currencyContext'
+import { useFiatCurrency } from '../lib/contexts/fiatCurrency/fiatCurrencyContext'
 import { investmentCalculator } from '../lib/helpers'
 
 const Home: NextPage = () => {
-  const { state, dispatch } = useCurrency()
+  const {
+    fiatCurrencyState: { selectedFiatCurrency, fiatCurrencyExchangeRates },
+    dispatch,
+  } = useFiatCurrency()
   const [inputValues, setInputValues] = useState({
     investment: '',
     initialPrice: '',
@@ -23,7 +26,7 @@ const Home: NextPage = () => {
 
   const currencySymbol = (
     <div className="rounded-l border border-r-0 bg-slate-600 px-4 py-2 text-white dark:border-slate-600 dark:bg-slate-700">
-      {state.currency.symbol || ''}
+      {selectedFiatCurrency?.symbol || ''}
     </div>
   )
 
@@ -115,7 +118,7 @@ const Home: NextPage = () => {
                 <div className="mb-5 flex">
                   <p className="font-semibold">Total</p>
                   <p className="ml-auto font-light">
-                    {state.currency.symbol || ''} {total}
+                    {selectedFiatCurrency?.symbol || ''} {total}
                   </p>
                 </div>
                 <div className="mb-5 flex">
@@ -136,7 +139,7 @@ const Home: NextPage = () => {
                     isNegative(profit) ? 'text-red-500' : 'text-green-600'
                   }`}
                 >
-                  {state.currency.symbol || ''} {profit}
+                  {selectedFiatCurrency?.symbol || ''} {profit}
                 </p>
               </div>
             </div>
