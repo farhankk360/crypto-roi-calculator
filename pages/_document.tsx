@@ -8,22 +8,15 @@ class MyDocument extends Document {
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta
-            name="viewport"
-            content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
-          />
-          <title>
-            Crypto Return On Investment Calculator, Bitcoin (BTC), Ethereum
-            (ETH), Binance Coin (BNB) and more...
-          </title>
-          <meta
             name="description"
             content="CryptoRoiCalculator allows you to calculate profit or loss on your investments."
-          ></meta>
-          <meta name="robots" content="index, follow"></meta>
-          <link
-            rel="canonical"
-            href="https://www.cryptoroicalculator.com"
-          ></link>
+          />
+          <meta name="robots" content="index, follow" />
+          <link rel="canonical" href="https://www.cryptoroicalculator.com" />
+          <meta
+            name="keywords"
+            content="crypto roi calculator, dollar cost average, investment, currency, profit, btc, eth, bnb, farhankk360"
+          />
           <link rel="icon" href="/favicon.ico" />
           <link rel="manifest" href="/manifest.json" />
           <link
@@ -48,10 +41,6 @@ class MyDocument extends Document {
             name="theme-color"
             media="(prefers-color-scheme: dark)"
             content="black"
-          />
-          <link
-            rel="apple-touch-icon"
-            href="/apple-touch-icon-iphone-60x60.png"
           />
           <link
             rel="apple-touch-startup-image"
@@ -182,6 +171,13 @@ class MyDocument extends Document {
             rel="apple-touch-startup-image"
             media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
             href="/images/splash/4__iPhone_SE__iPod_touch_5th_generation_and_later_portrait.png"
+          />
+          <link rel="apple-touch-icon" href="/images/splash/icon.png" />
+          <meta name="apple-touch-fullscreen" content="yes" />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta
+            name="apple-mobile-web-app-title"
+            content="Crypto ROI Calculator"
           />
         </Head>
         <body>
