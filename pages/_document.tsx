@@ -9,13 +9,13 @@ class MyDocument extends Document {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta
             name="description"
-            content="CryptoRoiCalculator allows you to calculate profit or loss on your investments."
+            content="CryptoRoiCalculator pwa app allows you to calculate profit or loss on your investments."
           />
           <meta name="robots" content="index, follow" />
           <link rel="canonical" href="https://www.cryptoroicalculator.com" />
           <meta
             name="keywords"
-            content="crypto roi calculator, dollar cost average, investment, currency, profit, btc, eth, bnb, farhankk360"
+            content="crypto roi calculator, dollar cost average, investment, currency, profit, btc, eth, bnb, farhankk360, pwa, app"
           />
           <link rel="icon" href="/favicon.ico" />
           <link rel="manifest" href="/manifest.json" />
