@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           Binance Coin (BNB) and more...
         </title>
       </Head>
-      <ThemeProvider attribute="class">
+      <ThemeProvider attribute="class" defaultTheme="system">
         <FiatCurrencyProvider>
           <CryptoCurrencyProvider>
             <Component {...pageProps} />

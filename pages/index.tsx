@@ -9,6 +9,7 @@ import {
   convertPriceInToFiat,
   isNegative,
 } from '../lib/helpers'
+import type { CryptoCurrency } from '../lib/types'
 
 const Home: NextPage<any> = (props) => {
   const {
@@ -17,7 +18,7 @@ const Home: NextPage<any> = (props) => {
   } = useFiatCurrency()
 
   const {
-    cryptoCurrencyState: { selectedCrypto, priceIntoFiat },
+    cryptoCurrencyState: { selectedCrypto, cryptoCurrencies, priceIntoFiat },
     dispatch: cryptoDispatch,
   } = useCryptoCurrency()
 
@@ -44,10 +45,25 @@ const Home: NextPage<any> = (props) => {
         payload: props.cyptoDataRes,
       })
 
-      cryptoDispatch({
-        type: 'set_crypto_currency',
-        payload: props.cyptoDataRes[0],
-      })
+      const localState = localStorage.getItem('set_crypto_currency_state')
+      if (localState) {
+        const parsed = JSON.parse(localState)
+
+        if (parsed.selectedCrypto) {
+          const prevSelected = props.cyptoDataRes.find(
+            (crypto: CryptoCurrency) => crypto.id === parsed.selectedCrypto.id
+          )
+          cryptoDispatch({
+            type: 'set_crypto_currency',
+            payload: prevSelected || props.cyptoDataRes[0],
+          })
+        }
+      } else {
+        cryptoDispatch({
+          type: 'set_crypto_currency',
+          payload: props.cyptoDataRes[0],
+        })
+      }
     }
   }, [])
 
@@ -76,8 +92,8 @@ const Home: NextPage<any> = (props) => {
       setInputValues({
         ...inputValues,
         investment: '',
-        initialPrice: priceIntoFiat.toFixed(2),
-        sellingPrice: (priceIntoFiat * 2).toFixed(2),
+        initialPrice: priceIntoFiat.toString(),
+        sellingPrice: (priceIntoFiat * 2).toString(),
       })
     }
   }, [priceIntoFiat])

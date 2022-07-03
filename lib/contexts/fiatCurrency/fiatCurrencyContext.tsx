@@ -76,15 +76,12 @@ function fiatCurrencyReducer(
 ) {
   switch (action.type) {
     case 'set_fiat_currency': {
-      // localStorage.setItem('currency', JSON.stringify(action.payload))
       return { ...state, selectedFiatCurrency: action.payload }
     }
     case 'set_fiat_currency_exchange_rates': {
-      // localStorage.setItem('currency', JSON.stringify(action.payload))
       return { ...state, fiatCurrencyExchangeRates: action.payload }
     }
     case 'set_fiat_currency_state': {
-      // localStorage.setItem('currency', JSON.stringify(action.payload))
       return { ...state, ...action.payload }
     }
     default: {
@@ -109,11 +106,14 @@ function FiatCurrencyProvider({ children }: FiatCurrencyProviderProps) {
         payload: JSON.parse(savedFiatCurrencyState) as State,
       })
     }
-
-    return () => {
-      localStorage.setItem('currency', JSON.stringify(fiatCurrencyState))
-    }
   }, [])
+
+  useEffect(() => {
+    localStorage.setItem(
+      'fiat_currency_state',
+      JSON.stringify(fiatCurrencyState)
+    )
+  }, [fiatCurrencyState])
 
   return (
     <FiatCurrencyStateContext.Provider value={value}>

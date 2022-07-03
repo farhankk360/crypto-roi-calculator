@@ -124,14 +124,14 @@ function CryptoCurrencyProvider({ children }: CryptoCurrencyProviderProps) {
         payload: JSON.parse(savedCryptoCurrencyState) as State,
       })
     }
-
-    return () => {
-      localStorage.setItem(
-        'set_crypto_currency_state',
-        JSON.stringify(cryptoCurrencyState)
-      )
-    }
   }, [])
+
+  useEffect(() => {
+    localStorage.setItem(
+      'set_crypto_currency_state',
+      JSON.stringify(cryptoCurrencyState)
+    )
+  }, [cryptoCurrencyState])
 
   return (
     <CryptoCurrencyStateContext.Provider value={value}>

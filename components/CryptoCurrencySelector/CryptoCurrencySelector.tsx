@@ -86,7 +86,7 @@ const CryptoCurrencySelector: React.FC<CryptoCurrencySelectorProps> = (
         {(selectedCrypto && selectedFiatCurrency?.symbol && priceIntoFiat && (
           <p className="mt-2 text-xs text-slate-400">
             1 {selectedCrypto.symbol.toUpperCase()} ={' '}
-            {selectedFiatCurrency.symbol} {priceIntoFiat.toFixed(2)}
+            {selectedFiatCurrency.symbol} {priceIntoFiat}
           </p>
         )) ||
           null}
