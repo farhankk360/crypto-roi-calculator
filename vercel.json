@@ -2,37 +2,11 @@
   "rewrites": [
     {
       "source": "/funnels/sales/:path*",
-      "destination": "https://hubspot.cryptoroicalculator.com/sales/:path*",
-      "headers": [
-        { "key": "host", "value": "www.cryptoroicalculator.com" },
-        {
-          "key": "X-HS-Public-Host",
-          "value": "hubspot.cryptoroicalculator.com"
-        },
-        {
-          "key": "X-HubSpot-Forwarded-Host",
-          "value": "www.cryptoroicalculator.com"
-        },
-        { "key": "X-HubSpot-Trust-Forwarded-For", "value": "true" },
-        { "key": "X-HubSpot-Forwarded-Proto", "value": "https" }
-      ]
+      "destination": "https://hubspot.cryptoroicalculator.com/sales/:path*"
     },
     {
       "source": "/funnels/application/:path*",
-      "destination": "https://hubspot.cryptoroicalculator.com/application/:path*",
-      "headers": [
-        { "key": "host", "value": "www.cryptoroicalculator.com" },
-        {
-          "key": "X-HS-Public-Host",
-          "value": "hubspot.cryptoroicalculator.com"
-        },
-        {
-          "key": "X-HubSpot-Forwarded-Host",
-          "value": "www.cryptoroicalculator.com"
-        },
-        { "key": "X-HubSpot-Trust-Forwarded-For", "value": "true" },
-        { "key": "X-HubSpot-Forwarded-Proto", "value": "https" }
-      ]
+      "destination": "https://hubspot.cryptoroicalculator.com/application/:path*"
     },
     {
       "source": "/(hs|_hcms|hubfs|hs-fs|cs/c|e3t)/:path*",
@@ -42,13 +16,7 @@
         {
           "key": "X-HS-Public-Host",
           "value": "hubspot.cryptoroicalculator.com"
-        },
-        {
-          "key": "X-HubSpot-Forwarded-Host",
-          "value": "www.cryptoroicalculator.com"
-        },
-        { "key": "X-HubSpot-Trust-Forwarded-For", "value": "true" },
-        { "key": "X-HubSpot-Forwarded-Proto", "value": "https" }
+        }
       ]
     }
   ]
