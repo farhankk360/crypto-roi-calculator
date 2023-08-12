@@ -17,6 +17,8 @@ const hubspotHeaders = [
     key: 'X-HubSpot-Trust-Forwarded-For',
     value: 'true',
   },
+  { key: 'X-Forwarded-Proto', value: 'https' },
+  { key: 'X-Forwarded-Host', value: 'hubspot.cryptoroicalculator.com' },
 ]
 
 module.exports = withPWA({
@@ -33,8 +35,12 @@ module.exports = withPWA({
       },
       {
         source: '/(hs|_hcms|hubfs|hs-fs|cs/c|e3t)/:path*',
-        destination: 'https://43540997.sites-proxy.hscoscdn40.net/:path*',
+        destination: 'https://hubspot.cryptoroicalculator.com/:path*',
       },
+      // {
+      //   source: '/(hs|_hcms|hubfs|hs-fs|cs/c|e3t)/:path*',
+      //   destination: 'https://43540997.sites-proxy.hscoscdn40.net/:path*',
+      // },
     ]
   },
   async headers() {
