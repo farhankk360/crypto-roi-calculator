@@ -8,17 +8,17 @@ const withPWA = require('next-pwa')
 const runtimeCaching = require('next-pwa/cache')
 
 const hubspotHeaders = [
-  { key: 'host', value: 'hubspot.cryptoroicalculator.com' },
-  {
-    key: 'X-HS-Public-Host',
-    value: 'hubspot.cryptoroicalculator.com',
-  },
+  // { key: 'host', value: 'hubspot.cryptoroicalculator.com' },
+  // {
+  //   key: 'X-HS-Public-Host',
+  //   value: 'hubspot.cryptoroicalculator.com',
+  // },
   {
     key: 'X-HubSpot-Trust-Forwarded-For',
     value: 'true',
   },
   { key: 'X-Forwarded-Proto', value: 'https' },
-  { key: 'X-Forwarded-Host', value: 'hubspot.cryptoroicalculator.com' },
+  { key: 'X-Forwarded-Host', value: 'www.cryptoroicalculator.com' },
 ]
 
 module.exports = withPWA({
