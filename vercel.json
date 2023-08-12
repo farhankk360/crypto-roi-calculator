@@ -18,7 +18,7 @@
     {
       "source": "/(hs|_hcms|hubfs|hs-fs|cs/c|e3t)/:path*",
       "headers": [
-        { "key": "host", "value": "www.cryptoroicalculator.com" },
+        { "key": "host", "value": "hubspot.cryptoroicalculator.com" },
         {
           "key": "X-HS-Public-Host",
           "value": "hubspot.cryptoroicalculator.com"
