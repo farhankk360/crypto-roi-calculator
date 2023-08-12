@@ -1,4 +1,5 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
       "source": "/funnels/sales/:path*",
@@ -10,7 +11,12 @@
     },
     {
       "source": "/(hs|_hcms|hubfs|hs-fs|cs/c|e3t)/:path*",
-      "destination": "https://hubspot.cryptoroicalculator.com/:path*",
+      "destination": "https://hubspot.cryptoroicalculator.com/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(hs|_hcms|hubfs|hs-fs|cs/c|e3t)/:path*",
       "headers": [
         { "key": "host", "value": "www.cryptoroicalculator.com" },
         {
