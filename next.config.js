@@ -8,7 +8,7 @@ const withPWA = require('next-pwa')
 const runtimeCaching = require('next-pwa/cache')
 
 const hubspotHeaders = [
-  { key: 'host', value: 'hubspot.cryptoroicalculator.com' },
+  { key: 'host', value: 'https://43540997.sites-proxy.hscoscdn40.net' },
   {
     key: 'X-HS-Public-Host',
     value: 'www.cryptoroicalculator.com',
@@ -33,14 +33,14 @@ module.exports = withPWA({
         destination:
           'https://hubspot.cryptoroicalculator.com/application/:path*',
       },
-      // {
-      //   source: '/(hs|_hcms|hubfs|hs-fs|cs/c|e3t)/:path*',
-      //   destination: 'https://hubspot.cryptoroicalculator.com/:path*',
-      // },
       {
         source: '/(hs|_hcms|hubfs|hs-fs|cs/c|e3t)/:path*',
-        destination: 'https://43540997.sites-proxy.hscoscdn40.net/:path*',
+        destination: 'https://hubspot.cryptoroicalculator.com/:path*',
       },
+      // {
+      //   source: '/(hs|_hcms|hubfs|hs-fs|cs/c|e3t)/:path*',
+      //   destination: 'https://43540997.sites-proxy.hscoscdn40.net/:path*',
+      // },
     ]
   },
   async headers() {
