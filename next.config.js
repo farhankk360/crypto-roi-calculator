@@ -11,7 +11,7 @@ const hubspotHeaders = [
   { key: 'host', value: 'hubspot.cryptoroicalculator.com' },
   {
     key: 'X-HS-Public-Host',
-    value: 'cryptoroicalculator.com',
+    value: 'hubspot.cryptoroicalculator.com',
   },
   {
     key: 'X-HubSpot-Trust-Forwarded-For',
@@ -33,7 +33,7 @@ module.exports = withPWA({
       },
       {
         source: '/(hs|_hcms|hubfs|hs-fs|cs/c|e3t)/:path*',
-        destination: 'https://hubspot.cryptoroicalculator.com/:path*',
+        destination: 'https://43540997.sites-proxy.hscoscdn40.net/:path*',
       },
     ]
   },
