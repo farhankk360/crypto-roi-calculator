@@ -19,6 +19,7 @@ const hubspotHeaders = [
   },
   { key: 'X-Forwarded-Proto', value: 'https' },
   { key: 'X-Forwarded-For', value: '206.84.143.84' },
+  { key: 'name', value: 'www.cryptoroicalculator.com' },
 ]
 
 module.exports = withPWA({
