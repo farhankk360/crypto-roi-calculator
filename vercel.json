@@ -2,15 +2,54 @@
   "rewrites": [
     {
       "source": "/funnels/sales/:path*",
-      "destination": "https://hubspot.cryptoroicalculator.com/sales/:path*"
+      "destination": "https://hubspot.cryptoroicalculator.com/sales/:path*",
+      "headers": [
+        { "key": "host", "value": "www.cryptoroicalculator.com" },
+        {
+          "key": "X-HS-Public-Host",
+          "value": "hubspot.cryptoroicalculator.com"
+        },
+        {
+          "key": "X-HubSpot-Forwarded-Host",
+          "value": "www.cryptoroicalculator.com"
+        },
+        { "key": "X-HubSpot-Trust-Forwarded-For", "value": "true" },
+        { "key": "X-HubSpot-Forwarded-Proto", "value": "https" }
+      ]
     },
     {
       "source": "/funnels/application/:path*",
-      "destination": "https://hubspot.cryptoroicalculator.com/application/:path*"
+      "destination": "https://hubspot.cryptoroicalculator.com/application/:path*",
+      "headers": [
+        { "key": "host", "value": "www.cryptoroicalculator.com" },
+        {
+          "key": "X-HS-Public-Host",
+          "value": "hubspot.cryptoroicalculator.com"
+        },
+        {
+          "key": "X-HubSpot-Forwarded-Host",
+          "value": "www.cryptoroicalculator.com"
+        },
+        { "key": "X-HubSpot-Trust-Forwarded-For", "value": "true" },
+        { "key": "X-HubSpot-Forwarded-Proto", "value": "https" }
+      ]
     },
     {
       "source": "/(hs|_hcms|hubfs|hs-fs|cs/c|e3t)/:path*",
-      "destination": "https://hubspot.cryptoroicalculator.com/:path*"
+      "destination": "https://hubspot.cryptoroicalculator.com/:path*",
+      "headers": [
+        { "key": "host", "value": "www.cryptoroicalculator.com" },
+        {
+          "key": "X-HS-Public-Host",
+          "value": "hubspot.cryptoroicalculator.com"
+        },
+        {
+          "key": "X-HubSpot-Forwarded-Host",
+          "value": "www.cryptoroicalculator.com"
+        },
+        { "key": "X-HubSpot-Trust-Forwarded-For", "value": "true" },
+        { "key": "X-HubSpot-Forwarded-Proto", "value": "https" }
+      ]
     }
   ]
 }
