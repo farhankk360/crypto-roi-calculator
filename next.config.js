@@ -33,14 +33,14 @@ module.exports = withPWA({
         destination:
           'https://hubspot.cryptoroicalculator.com/application/:path*',
       },
-      {
-        source: '/(hs|_hcms|hubfs|hs-fs|cs/c|e3t)/:path*',
-        destination: 'https://hubspot.cryptoroicalculator.com/:path*',
-      },
       // {
       //   source: '/(hs|_hcms|hubfs|hs-fs|cs/c|e3t)/:path*',
-      //   destination: 'https://43540997.sites-proxy.hscoscdn40.net/:path*',
+      //   destination: 'https://hubspot.cryptoroicalculator.com/:path*',
       // },
+      {
+        source: '/(hs|_hcms|hubfs|hs-fs|cs/c|e3t)/:path*',
+        destination: 'https://43540997.sites-proxy.hscoscdn40.net/:path*',
+      },
     ]
   },
   async headers() {
