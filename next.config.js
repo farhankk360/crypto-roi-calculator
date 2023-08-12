@@ -8,7 +8,7 @@ const withPWA = require('next-pwa')
 const runtimeCaching = require('next-pwa/cache')
 
 const hubspotHeaders = [
-  { key: 'host', value: 'https://43540997.sites-proxy.hscoscdn40.net' },
+  { key: 'host', value: '43540997.sites-proxy.hscoscdn40.net' },
   {
     key: 'X-HS-Public-Host',
     value: 'www.cryptoroicalculator.com',
