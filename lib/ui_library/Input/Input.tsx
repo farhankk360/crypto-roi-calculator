@@ -11,6 +11,7 @@ interface InputProps {
   value?: string | number
   iconLeft?: React.ReactNode
   iconRight?: React.ReactNode
+  autoFocus?: boolean
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -25,6 +26,7 @@ const Input: React.FC<InputProps> = (props) => {
     inputClassName = '',
     name,
     value,
+    autoFocus,
   } = props
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -50,6 +52,7 @@ const Input: React.FC<InputProps> = (props) => {
           </span>
         )}
         <input
+          autoFocus={autoFocus}
           value={value}
           placeholder={placeholder}
           type={type}
